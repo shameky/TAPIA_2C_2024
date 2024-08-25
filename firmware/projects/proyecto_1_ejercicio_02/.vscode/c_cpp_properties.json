@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF",
+            "compilerPath": "C://Users//tapit//.espressif//tools//riscv32-esp-elf//esp-13.2.0_20240530//riscv32-esp-elf//bin//riscv32-esp-elf-gcc.exe",
+            "includePath": [
+                "${config:idf.espIdfPath}/components/**",
+                "${config:idf.espIdfPathWin}/components/**",
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../drivers/microcontroller/**",
+                "${workspaceFolder}/../../drivers/devices/**",
+                "C:/Repositorio/TAPIA_2C_2024/firmware/drivers/devices/inc"
+            ],
+            "browse": {
+                "path": [
+                    "${config:idf.espIdfPath}/components",
+                    "${config:idf.espIdfPathWin}/components",
+                    "${workspaceFolder}/**",
+                    "${workspaceFolder}/../../drivers/microcontroller/**",
+                    "${workspaceFolder}/../../drivers/devices/**"
+                ],
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
