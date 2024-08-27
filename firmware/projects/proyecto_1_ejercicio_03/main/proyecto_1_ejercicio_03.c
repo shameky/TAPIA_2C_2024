@@ -35,10 +35,10 @@ typedef enum {
     ON = 1,
     TOGGLE = 2
 } LedMode;
-#define chosen_mode TOGGLE;
-#define chosen_led 1;
-#define chosen_cycle 5;
-#define chosen_period 500;
+#define chosen_mode TOGGLE
+#define chosen_led 1
+#define chosen_cycle 10
+#define chosen_period 500
 /*==================[internal data definition]===============================*/
 struct leds
 {
@@ -90,9 +90,11 @@ void control_led(struct leds *my_leds) {
 			LedToggle(my_leds->n_led);
             vTaskDelay(my_leds->periodo/portTICK_PERIOD_MS);
 		}
+		for(uint8_t i = 0; i < my_leds->periodo/100; i++) {
+			vTaskDelay(100/portTICK_PERIOD_MS);
 	}
 }
-
+}
 /*==================[external functions definition]==========================*/
 void app_main(void){
 	LedsInit();
