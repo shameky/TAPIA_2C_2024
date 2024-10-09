@@ -136,9 +136,7 @@ static void turnon_LEDs_distance(void *pvParameter)
 			LedOff(LED_2);
 			LedOff(LED_3);
 			}
-
-		vTaskDelay(CONFIG_LED_PERIOD / portTICK_PERIOD_MS);
-
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 	}	
 }
 
