@@ -74,7 +74,6 @@ static void measure_distance(void *pvParameter)
 			{
 			distance = HcSr04ReadDistanceInCentimeters();
 			}
-
 		vTaskDelay(CONFIG_MEASURE_PERIOD / portTICK_PERIOD_MS);
 	}
 }
