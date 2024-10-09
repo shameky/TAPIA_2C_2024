@@ -66,110 +66,121 @@ TaskHandle_t read_switches_task_handle = NULL;
  * @brief add description
 */
 
-static void measure_distance(void *pvParameter){
+static void measure_distance(void *pvParameter)
+{
+	while(true)
+	{
+		if (MEASURE_DISTANCE)
+			{
+			distance = HcSr04ReadDistanceInCentimeters();
+			}
 
- while(true){
-
-	if (MEASURE_DISTANCE){
-
-	    distance = HcSr04ReadDistanceInCentimeters();}
-
-	vTaskDelay(CONFIG_MEASURE_PERIOD / portTICK_PERIOD_MS);
+		vTaskDelay(CONFIG_MEASURE_PERIOD / portTICK_PERIOD_MS);
 	}
 }
 
 /**
  * @brief add description
 */
-static void turnon_LEDs_distance(void *pvParameter){
+static void turnon_LEDs_distance(void *pvParameter)
+{
 
- while(true){
+	while(true)
+		{
+		if (MEASURE_DISTANCE)
+			{
+			if (distance < first_measurement_value)
+				{
+				LedOff(LED_1);
+				LedOff(LED_2);
+				LedOff(LED_3);
+				}
 
-	if (MEASURE_DISTANCE){
+			else if (first_measurement_value <= distance && distance < second_measurement_value)
+				{
+				LedOn(LED_1);
+				LedOff(LED_2);
+				LedOff(LED_3);
+				}
 
-		if (distance < first_measurement_value){
+			else if(second_measurement_value <= distance && distance < third_measurement_value)
+				{
+				LedOn(LED_1);
+				LedOn(LED_2);
+				LedOff(LED_3);
+				}
+
+			else 
+				{
+				LedOn(LED_1);
+				LedOn(LED_2);
+				LedOn(LED_3);
+				}
+			}
+
+		else
+			{
 			LedOff(LED_1);
 			LedOff(LED_2);
 			LedOff(LED_3);
-		}
+			}
 
-		else if (first_measurement_value <= distance && distance < second_measurement_value){
-			LedOn(LED_1);
-			LedOff(LED_2);
-			LedOff(LED_3);
-		}
+		vTaskDelay(CONFIG_LED_PERIOD / portTICK_PERIOD_MS);
 
-		else if(second_measurement_value <= distance && distance < third_measurement_value){
-			LedOn(LED_1);
-			LedOn(LED_2);
-			LedOff(LED_3);
-		}
-
-		else {
-			LedOn(LED_1);
-			LedOn(LED_2);
-			LedOn(LED_3);
-		}}
-
-	else{
-			LedOff(LED_1);
-			LedOff(LED_2);
-			LedOff(LED_3);
-		}
-
-	vTaskDelay(CONFIG_LED_PERIOD / portTICK_PERIOD_MS);
-
-}}
+	}	
+}
 
 /**
  * @brief Add description
 */
 
-void static show_distance_LCD(void *pvParameter){
+void static show_distance_LCD(void *pvParameter)
+{
+	while(true)
+	{	
+		if(MEASURE_DISTANCE)
+			{
+			if(!hold_measurement)
+				{
+				LcdItsE0803Write(distance);
+				}
+			}
 
- while(true){
-	
-	if(MEASURE_DISTANCE){
-
-		if (!hold_measurement){
-
-			LcdItsE0803Write(distance);
-	}}
-
-	else{ 
-		LcdItsE0803Write(0);
+		else
+			{ 
+			LcdItsE0803Write(0);
+			}
+		vTaskDelay(CONFIG_LCD_PERIOD / portTICK_PERIOD_MS);
 	}
-
-	vTaskDelay(CONFIG_LCD_PERIOD / portTICK_PERIOD_MS);
-}}
+}
 
 /**
  * @brief Add description
 */
 
-void static read_switches(void *pvParameter){
-
- while(true){
-
-	uint8_t keys = SwitchesRead();
-
-	switch (keys)
+void static read_switches(void *pvParameter)
+{
+	while(true)
 	{
-		case SWITCH_1:
-			MEASURE_DISTANCE = !MEASURE_DISTANCE;
-		break;
-	
-		case SWITCH_2:
-			hold_measurement = !hold_measurement;
-		break;
-	}
+	uint8_t keys = SwitchesRead();
+		switch (keys)
+		{
+			case SWITCH_1:
+				MEASURE_DISTANCE = !MEASURE_DISTANCE;
+			break;
 
+			case SWITCH_2:
+				hold_measurement = !hold_measurement;
+			break;
+		}
 	vTaskDelay(CONFIG_SWITCH_PERIOD / portTICK_PERIOD_MS); 
 
-}}
+	}
+}
 
 /*==================[external functions definition]==========================*/
-void app_main(void){
+void app_main(void)
+{
 
 	LedsInit();
 	SwitchesInit();
