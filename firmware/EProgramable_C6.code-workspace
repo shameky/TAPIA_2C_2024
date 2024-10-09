@@ -32,6 +32,18 @@
         },
         {
             "path": "projects/proyecto_1_ejercicio_05"
+        },
+        {
+            "path": "projects/MedidorDistanciaUltrasonido"
+        },
+        {
+            "path": "projects/MedidorDistanciaUltrasonidoInterrupciones"
+        },
+        {
+            "path": "projects/oscilloscope"
+        },
+        {
+            "path": "projects/MedidorDistanciaUltrasonidoPuertoSerie"
         }
     ],
     "settings": {
