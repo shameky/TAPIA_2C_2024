@@ -66,7 +66,6 @@ static void convert_digital(void *param){
 		AnalogInputReadSingle(CH1, &reading);
 		UartSendString(UART_PC, (char *)UartItoa(reading, 10));
 		UartSendString(UART_PC, "\r" );
-		send_reading_value(reading);
 	}
 }
 
@@ -82,7 +81,7 @@ static void turnon_LEDs_GSR(void *pvParameter)
                 }
 				else {
 						LedToggle(LED_2);
-						Ledoff(LED_1);
+						LedOff(LED_1);
 					 }
 					
 			}
