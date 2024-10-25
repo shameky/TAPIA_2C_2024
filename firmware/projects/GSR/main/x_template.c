@@ -43,7 +43,7 @@
 #define BUFFER_SIZE 256
 #define ECG_FREQUENCY 3900
 #define BAUD_RATE 115200
-#define GSR_TRESHOLD 250
+#define GSR_TRESHOLD 350
 
 /*==================[internal data definition]===============================*/
 
