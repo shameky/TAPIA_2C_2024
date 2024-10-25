@@ -44,6 +44,9 @@
         },
         {
             "path": "projects/MedidorDistanciaUltrasonidoPuertoSerie"
+        },
+        {
+            "path": "projects/GSR"
         }
     ],
     "settings": {
