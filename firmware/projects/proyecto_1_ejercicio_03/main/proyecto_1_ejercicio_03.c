@@ -87,13 +87,24 @@ void control_led(struct leds *my_leds) {
 	else if (my_leds->mode == TOGGLE)
 	{
 		for (uint8_t i = 0; i < my_leds->n_ciclos; i++) {
-			LedToggle(my_leds->n_led);
-            vTaskDelay(my_leds->periodo/portTICK_PERIOD_MS);
+			switch (my_leds->n_led) 
+		  {
+			case 1:
+			LedToggle(LED_1);
+			break;
+			case 2:
+			LedToggle(LED_2);
+			break;
+			case 3:
+			LedToggle(LED_3);
+			break;
 		}
-		for(uint8_t i = 0; i < my_leds->periodo/100; i++) {
+		for(uint8_t i = 0; i < my_leds->periodo/100; i++)
+		{
 			vTaskDelay(100/portTICK_PERIOD_MS);
+		}
 	}
-}
+	}
 }
 /*==================[external functions definition]==========================*/
 void app_main(void){
