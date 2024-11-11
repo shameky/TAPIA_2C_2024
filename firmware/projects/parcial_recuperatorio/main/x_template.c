@@ -31,6 +31,7 @@
 #include "freertos/task.h"
 #include <led.h>
 #include <hc_sr04.h>
+#include <uart_mcu.h>
 #include <timer_mcu.h>
 
 /*==================[macros and definitions]=================================*/
@@ -124,6 +125,19 @@ static void verificar_velocidad(void *pvParameter)
 
 	}	
 }
+/**
+ * @brief This function is an interrupt service routine (ISR) for Timer A.
+ * It notifies the 'convert_digital' task to perform its task using a task notification.
+ *
+ * @param param A pointer to the parameters passed to the ISR. In this case, it is not used.
+ *
+ * @return void.
+ */
+void FuncTimerA(void* param){
+
+    vTaskNotifyGiveFromISR(verificar_velocidad_task_handle, pdFALSE);   
+
+}
 
 /**
  * @brief This function is an interrupt service routine (ISR) for Timer B.
@@ -136,7 +150,7 @@ static void verificar_velocidad(void *pvParameter)
  */
 void FuncTimerB(void* param){
 
-    vTaskNotifyGiveFromISR(convert_analog_task_handle, pdFALSE);   
+    vTaskNotifyGiveFromISR(covert_digital_task_handle, pdFALSE);   
 
 }
 
@@ -153,6 +167,8 @@ static void convert_digital(void *param){
 
 		uint16_t reading1 = 0;
 		uint16_t reading2 = 0;
+		uint16_t prom1 = 0;
+		uint16_t prom2 = 0;
 
 		if(distance == 0)
 		{	
@@ -167,12 +183,14 @@ static void convert_digital(void *param){
 			prom1 = reading1 / 50 ;
 			prom2 = reading2 / 50 ;
 			peso = prom1 + prom2;
+
+			UartSendString(UART_PC, (char *)UartItoa(peso, 10));
+			UartSendString(UART_PC, "Peso: \r" );
+			UartSendString(UART_PC, (char *)UartItoa(distance / CONFIG_MEASURE_PERIOD, 10));
+			UartSendString(UART_PC, "Velocidad: \r" );
 		}
 		
-		UartSendString(UART_PC, (char *)UartItoa(peso, 10));
-		UartSendString(UART_PC, "Peso: \r" );
-		UartSendString(UART_PC, (char *)UartItoa(distance / CONFIG_MEASURE_PERIOD, 10));
-		UartSendString(UART_PC, "Velocidad: \r" );
+		
 
 		vTaskDelay(CONFIG_MEASURE_PERIOD2 / portTICK_PERIOD_MS);
 	}
@@ -209,9 +227,8 @@ void app_main(void)
 {
 	LedsInit();
 	HcSr04Init(GPIO_3, GPIO_2);
-	AnalogInputInit(&analog_input);
 	BarreraInit(GPIO_8);
-
+	
 	analog_input_config_t analog_input ={
 		.input = CH1,
 		.mode = ADC_SINGLE,
@@ -222,6 +239,8 @@ void app_main(void)
 		.mode = ADC_SINGLE,
 	};
 
+	AnalogInputInit(&analog_input);
+
 	serial_config_t serial_pc ={
 		.port = UART_PC,
 		.baud_rate = BAUD_RATE,
@@ -229,10 +248,31 @@ void app_main(void)
 		.param_p = NULL,
 	};
 
+		timer_config_t timer_1 = 
+    {
+    	.timer = TIMER_A,
+        .period = CONFIG_MEASURE_PERIOD,
+        .func_p = FuncTimerA,
+        .param_p = NULL
+    };
+
+
+		timer_config_t timer_2 = 
+    {
+    	.timer = TIMER_B,
+        .period = CONFIG_MEASURE_PERIOD2,
+        .func_p = FuncTimerA,
+        .param_p = NULL
+    };
+
 	UartInit(&serial_pc);
 
+	TimerInit(&timer_1);
+	TimerInit(&timer_2);
 	xTaskCreate(&measure_distance, "Medir_Distancia", 512, NULL, 5, &measure_distance_task_handle);
 	xTaskCreate(&verificar_velocidad, "Verificar la velocidad del camion", 512, NULL, 5, &verificar_velocidad_task_handle);
 	xTaskCreate(&convert_digital, "Convertir señal a Digital", 1024, NULL, 5, &covert_digital_task_handle);
+	TimerStart(timer_1.timer);
+	TimerStart(timer_2.timer);
 }
 /*==================[end of file]============================================*/
