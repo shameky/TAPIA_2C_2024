@@ -1,0 +1,13 @@
+1) Es un conversor digital analogico
+a. La salida PWM es una salida digital, con lo cual para convertirla a una señal analógica, se utiliza
+un filtro pasa bajos para obtener la señal analógica como salida.
+b. El hecho de que el conversor sea de 8 o 10 bits, impacta en los valores máximos de ciclo de trabajo y frecuencia
+del PWM, dado que si se utiliza un valor mayor al estipulado para 8bits, los datos se comenzarían superponer
+
+2)corresponde al protocolo de comunicación SPI
+La primera señal activa el chipselect.
+La segunda señal al estar activado el CS el CLK da el paso para la transmisión de los datos. 
+La tercera señal muestra como se transmite los datos en MOSI (master output, sleve input)
+La tercera señal muestra como se transmite los datos en MISO (master input, sleve output)
+
+3) PIN 29 -> GPIO15/JTAG2
