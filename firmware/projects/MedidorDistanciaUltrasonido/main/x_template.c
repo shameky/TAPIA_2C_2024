@@ -1,27 +1,31 @@
-/*! @mainpage Template
+/*! @mainpage Medidor de Distancia por Ultrasonido
  *
  * @section genDesc General Description
  *
- * This section describes how the program works.
- *
- * <a href="https://drive.google.com/...">Operation Example</a>
+ * The program allows you to measure the distance through an HC-SR04 ultrasound sensor and display it on the screen in cm. 
+ * switch 1 the measurement is started/stopped.
  *
  * @section hardConn Hardware Connection
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
+ * | 	LCD 	 	| 	GPIO_19     |
+ * |				|	GPIO_18		|
+ * |				|	GPIO_9		|
+ * |	HC-SR04		|	GPIO_03		|
+ * |				|	GPIO_02		|
  *
  *
  * @section changelog Changelog
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 12/09/2024 | Creación del Documento		                 |
  *
- * @author Jorge Ignacio Tapia (jorge.tapia@ingenieria.uner.edu.ar)
+ * @author Tapia Jorge Ignacio (jorge.tapia@ingenieria.uner.edu.ar)
  *
  */
+
 
 /*==================[inclusions]=============================================*/
 
@@ -63,9 +67,9 @@ TaskHandle_t read_switches_task_handle = NULL;
 /*==================[internal functions declaration]=========================*/
 
 /**
- * @brief add description
+ * @brief Task to measure distance using HC-SR04 sensor
+ * @param pvParameter Pointer to task parameters
 */
-
 static void measure_distance(void *pvParameter)
 {
 	while(true)
@@ -79,7 +83,12 @@ static void measure_distance(void *pvParameter)
 }
 
 /**
- * @brief add description
+ * @brief Function that turns on the LEDs according to the distance measurement.
+ * 		  If distance < 10cm, all the LEDs turn off.
+ * 		  If 10<=distance<20, LED 1 turns on.
+ * 		  If 20<=distance<30, LEDs 1 and 2 light up.
+ * 		  If distance => 30 , all the LEDs light up.
+ * @param pvParameter Pointer to task parameters
 */
 static void turnon_LEDs_distance(void *pvParameter)
 {
@@ -130,9 +139,9 @@ static void turnon_LEDs_distance(void *pvParameter)
 }
 
 /**
- * @brief Add description
+ * @brief Task to show distance in LCD.
+ * @param pvParameter Pointer to task parameters.
 */
-
 void static show_distance_LCD(void *pvParameter)
 {
 	while(true)
@@ -154,9 +163,9 @@ void static show_distance_LCD(void *pvParameter)
 }
 
 /**
- * @brief Add description
-*/
-
+ * @brief Task to read switches input
+ * @param pvParameter Pointer to task parameters
+ */
 void static read_switches(void *pvParameter)
 {
 	while(true)
