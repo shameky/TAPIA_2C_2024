@@ -115,6 +115,7 @@ void FuncTimerB(void* param){
  *
  * @return void.
  */
+//convertir de analogico a digital
 static void convert_digital(void *param){
 	while(true){
 		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
@@ -132,8 +133,9 @@ static void convert_digital(void *param){
  *
  * @return void.
  */
+//convertir de digital a analogico
 static void convert_analog(void *param){
-
+	
 	int index = 0;
 
 	while (true){
