@@ -10,7 +10,11 @@
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
+ * | 	LCD 	 	| 	GPIO_19     |
+ * |				|	GPIO_18		|
+ * |				|	GPIO_9		|
+ * |	HC-SR04		|	GPIO_03		|
+ * |				|	GPIO_02		|
  *
  *
  * @section changelog Changelog
@@ -38,7 +42,7 @@
 
 /*==================[macros and definitions]=================================*/
 
-#define CONFIG_MEASURE_PERIOD 500000
+#define CONFIG_MEASURE_PERIOD 1000000
 #define CONFIG_LED_PERIOD 1000
 #define CONFIG_LCD_PERIOD 1000
 #define CONFIG_SWITCH_PERIOD 200
@@ -63,16 +67,14 @@ TaskHandle_t read_switches_task_handle = NULL;
 
 /*==================[internal functions declaration]=========================*/
 
-/**
- * @brief Add description
-*/
 
 void FuncTimerA(void *pvParameter)
 {
     vTaskNotifyGiveFromISR(measure_distance_task_handle, pdFALSE);
 	vTaskNotifyGiveFromISR(show_distance_LCD_task_handle, pdFALSE); 
-	vTaskNotifyGiveFromISR(turnon_LEDs_distance_task_handle, pdFALSE);   
+	vTaskNotifyGiveFromISR(turnon_LEDs_distance_task_handle, pdFALSE);
 }
+
 
 /**
  * @brief Add description
