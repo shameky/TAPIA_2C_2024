@@ -67,7 +67,9 @@ TaskHandle_t read_switches_task_handle = NULL;
 
 /*==================[internal functions declaration]=========================*/
 
-
+/**
+ * @brief Timer callback function to give a task notification.
+ */
 void FuncTimerA(void *pvParameter)
 {
     vTaskNotifyGiveFromISR(measure_distance_task_handle, pdFALSE);
@@ -77,9 +79,9 @@ void FuncTimerA(void *pvParameter)
 
 
 /**
- * @brief Add description
+ * @brief Task to measure distance using HC-SR04 sensor
+ * @param pvParameter Pointer to task parameters
 */
-
 static void measure_distance(void *pvParameter)
 {
 	while (true)
@@ -93,7 +95,12 @@ static void measure_distance(void *pvParameter)
 }
 
 /**
- * @brief Add description
+ * @brief Function that turns on the LEDs according to the distance measurement.
+ * 		  If distance < 10cm, all the LEDs turn off.
+ * 		  If 10<=distance<20, LED 1 turns on.
+ * 		  If 20<=distance<30, LEDs 1 and 2 light up.
+ * 		  If distance => 30 , all the LEDs light up.
+ * @param pvParameter Pointer to task parameters
 */
 
 static void turnon_LEDs_distance(void *pvParameter)
@@ -144,9 +151,9 @@ static void turnon_LEDs_distance(void *pvParameter)
 
 
 /**
- * @brief Add description
+ * @brief Task to show distance in LCD.
+ * @param pvParameter Pointer to task parameters.
 */
-
 void static show_distance_LCD(void *pvParameter)
 {
 	while(true)
@@ -168,8 +175,9 @@ void static show_distance_LCD(void *pvParameter)
 }
 
 /**
- * @brief Add description
-*/
+ * @brief Task to read switches input
+ * @param pvParameter Pointer to task parameters
+ */
 
 void static read_switches(void *pvParameter)
 {

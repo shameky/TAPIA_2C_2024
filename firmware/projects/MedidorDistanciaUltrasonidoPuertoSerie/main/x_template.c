@@ -10,7 +10,11 @@
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
+ * | 	LCD 	 	| 	GPIO_19     |
+ * |				|	GPIO_18		|
+ * |				|	GPIO_9		|
+ * |	HC-SR04		|	GPIO_03		|
+ * |				|	GPIO_02		|
  *
  *
  * @section changelog Changelog
@@ -37,7 +41,7 @@
 #include <uart_mcu.h>
 /*==================[macros and definitions]=================================*/
 
-#define CONFIG_MEASURE_PERIOD 1000
+#define CONFIG_MEASURE_PERIOD 1000000
 #define BUAD_RATE 115200    
 #define first_measurement_value 10
 #define second_measurement_value 20
