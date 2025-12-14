@@ -53,6 +53,9 @@
         },
         {
             "path": "projects/parcial_recuperatorio"
+        },
+        {
+            "path": "projects/x_test1"
         }
     ],
     "settings": {
