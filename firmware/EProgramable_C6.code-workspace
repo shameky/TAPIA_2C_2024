@@ -56,6 +56,12 @@
         },
         {
             "path": "projects/x_test1"
+        },
+        {
+            "path": "projects/x_test2"
+        },
+        {
+            "path": "projects/x_test3"
         }
     ],
     "settings": {
