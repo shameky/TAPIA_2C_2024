@@ -36,6 +36,7 @@ var searchData=
   ['connect_33',['connect',['../unionesp__hidd__cb__param__t.html#aca79c69386c9f7918c333ca0aa439336',1,'esp_hidd_cb_param_t']]],
   ['connected_34',['connected',['../structhidd__clcb__t.html#ab36823025f12a809217f7771125658c2',1,'hidd_clcb_t']]],
   ['connection_35',['Hardware Connection',['../index.html#hardConn',1,'']]],
-  ['cur_5fsrvc_5fid_36',['cur_srvc_id',['../structhidd__clcb__t.html#a7cbbd0e1ae863d4010064c22d3212af6',1,'hidd_clcb_t']]],
-  ['cxx_5fstd_37',['CXX_STD',['../_c_make_c_x_x_compiler_id_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]]
+  ['convertir_5fvoltaje_5fpeso_36',['convertir_voltaje_peso',['../x__template_8c.html#a986238c043b62ba75c89473d83009dea',1,'x_template.c']]],
+  ['cur_5fsrvc_5fid_37',['cur_srvc_id',['../structhidd__clcb__t.html#a7cbbd0e1ae863d4010064c22d3212af6',1,'hidd_clcb_t']]],
+  ['cxx_5fstd_38',['CXX_STD',['../_c_make_c_x_x_compiler_id_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]]
 ];

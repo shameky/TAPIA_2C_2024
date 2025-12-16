@@ -105,21 +105,348 @@ $(function(){initNavTree('x__template_8c.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Funciones</a>  </div>
+<a href="#define-members">defines</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo x_template.c</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hc__sr04_8h_source.html">hc_sr04.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="analog__io__mcu_8h_source.html">analog_io_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__mcu_8h_source.html">uart_mcu.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="switch_8h_source.html">switch.h</a>&gt;</code><br />
 </div>
 <p><a href="x__template_8c_source.html">Ir al código fuente de este archivo.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a5f82616fab767a9bb232ea8b891bdc0d" id="r_a5f82616fab767a9bb232ea8b891bdc0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f82616fab767a9bb232ea8b891bdc0d">TIME_PERIOD_AGUA</a>&#160;&#160;&#160;5000000</td></tr>
+<tr class="separator:a5f82616fab767a9bb232ea8b891bdc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c5133404183ab81b869ea7999ed554" id="r_a23c5133404183ab81b869ea7999ed554"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23c5133404183ab81b869ea7999ed554">TIME_PERIOD_PESO</a>&#160;&#160;&#160;5000000</td></tr>
+<tr class="separator:a23c5133404183ab81b869ea7999ed554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a8613a515ff89e50755ba998a37037" id="r_af1a8613a515ff89e50755ba998a37037"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1a8613a515ff89e50755ba998a37037">TIME_PERIOD_INFORMAR</a>&#160;&#160;&#160;5000000</td></tr>
+<tr class="separator:af1a8613a515ff89e50755ba998a37037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bb3d94c1a81090aa4c5e52bd55f6080" id="r_a5bb3d94c1a81090aa4c5e52bd55f6080"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bb3d94c1a81090aa4c5e52bd55f6080">BALANZA</a>&#160;&#160;&#160;<a class="el" href="group___analog___i_o.html#gga4ebdf50515e5d73c58c24fd1491770dca703cf81b7a9530ba8650e0ee2f29d68e">CH1</a></td></tr>
+<tr class="separator:a5bb3d94c1a81090aa4c5e52bd55f6080"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a686bbea8aa48783bff60cf1ea1c572ca" id="r_a686bbea8aa48783bff60cf1ea1c572ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a686bbea8aa48783bff60cf1ea1c572ca">VALVULA_AGUA</a>&#160;&#160;&#160;<a class="el" href="group___g_i_o_p.html#ggaf65604147d0244c9b13cfdc865ad5393a8bdaec9182fb8ab2106d5c67f3eabd2d">GPIO_9</a></td></tr>
+<tr class="separator:a686bbea8aa48783bff60cf1ea1c572ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3435ea0743e7608b84acaafb98d945ff" id="r_a3435ea0743e7608b84acaafb98d945ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3435ea0743e7608b84acaafb98d945ff">VALVULA_COMIDA</a>&#160;&#160;&#160;<a class="el" href="group___g_i_o_p.html#ggaf65604147d0244c9b13cfdc865ad5393a3943e6071dec78b6bcf9586cf0de6dd3">GPIO_10</a></td></tr>
+<tr class="separator:a3435ea0743e7608b84acaafb98d945ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adefb9a74a8127d1d5ea9599d96f8eaa0" id="r_adefb9a74a8127d1d5ea9599d96f8eaa0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adefb9a74a8127d1d5ea9599d96f8eaa0">distancia_recipiente_lleno</a>&#160;&#160;&#160;31.5</td></tr>
+<tr class="separator:adefb9a74a8127d1d5ea9599d96f8eaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6100ab64bbb6a6758584d6fc7ebe6eb" id="r_aa6100ab64bbb6a6758584d6fc7ebe6eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6100ab64bbb6a6758584d6fc7ebe6eb">distancia_recipiente_deseada</a>&#160;&#160;&#160;33</td></tr>
+<tr class="separator:aa6100ab64bbb6a6758584d6fc7ebe6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a495b9899898bdd40e4dfe1dcd9212d69" id="r_a495b9899898bdd40e4dfe1dcd9212d69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a495b9899898bdd40e4dfe1dcd9212d69">recipiente_lleno</a>&#160;&#160;&#160;500</td></tr>
+<tr class="separator:a495b9899898bdd40e4dfe1dcd9212d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97dd27967880d1092e8c1bc72bb1928a" id="r_a97dd27967880d1092e8c1bc72bb1928a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97dd27967880d1092e8c1bc72bb1928a">recipiente_vacio</a>&#160;&#160;&#160;50</td></tr>
+<tr class="separator:a97dd27967880d1092e8c1bc72bb1928a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac335c9f3283058b555758d9cac076b92" id="r_ac335c9f3283058b555758d9cac076b92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac335c9f3283058b555758d9cac076b92">BUAD_RATE</a>&#160;&#160;&#160;96000</td></tr>
+<tr class="separator:ac335c9f3283058b555758d9cac076b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funciones</h2></td></tr>
+<tr class="memitem:abcb960fa8ecef9efb6dcf26fa8457410" id="r_abcb960fa8ecef9efb6dcf26fa8457410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcb960fa8ecef9efb6dcf26fa8457410">Notify_TAREA1</a> (void *param)</td></tr>
+<tr class="separator:abcb960fa8ecef9efb6dcf26fa8457410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf98844238f4ccfe5b6ef3a88304ad6a" id="r_adf98844238f4ccfe5b6ef3a88304ad6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf98844238f4ccfe5b6ef3a88304ad6a">Notify_TAREA2</a> (void *param)</td></tr>
+<tr class="separator:adf98844238f4ccfe5b6ef3a88304ad6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9de0f5933bdb5afd0642f4aefc49e95" id="r_ab9de0f5933bdb5afd0642f4aefc49e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9de0f5933bdb5afd0642f4aefc49e95">Notify_TAREA3</a> (void *param)</td></tr>
+<tr class="separator:ab9de0f5933bdb5afd0642f4aefc49e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a986238c043b62ba75c89473d83009dea" id="r_a986238c043b62ba75c89473d83009dea"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a986238c043b62ba75c89473d83009dea">convertir_voltaje_peso</a> (uint16_t voltaje)</td></tr>
+<tr class="separator:a986238c043b62ba75c89473d83009dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56ea3a521ffb4b9ed3d46b5adb0d7029" id="r_a56ea3a521ffb4b9ed3d46b5adb0d7029"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56ea3a521ffb4b9ed3d46b5adb0d7029">suministrar_comida</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:a56ea3a521ffb4b9ed3d46b5adb0d7029"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a56ea3a521ffb4b9ed3d46b5adb0d7029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a564a42cc25396a918a94b88cae26d813" id="r_a564a42cc25396a918a94b88cae26d813"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a564a42cc25396a918a94b88cae26d813">suministrar_agua</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:a564a42cc25396a918a94b88cae26d813"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a564a42cc25396a918a94b88cae26d813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a368e797183be1c299abd49a0de17e" id="r_a48a368e797183be1c299abd49a0de17e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48a368e797183be1c299abd49a0de17e">activar_valvula_agua</a> ()</td></tr>
+<tr class="memdesc:a48a368e797183be1c299abd49a0de17e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a48a368e797183be1c299abd49a0de17e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a354f9f0bed90634aa3930f0085e03212" id="r_a354f9f0bed90634aa3930f0085e03212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a354f9f0bed90634aa3930f0085e03212">desactivar_valvula_agua</a> ()</td></tr>
+<tr class="memdesc:a354f9f0bed90634aa3930f0085e03212"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a354f9f0bed90634aa3930f0085e03212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a163f35794896a34ac7ba6e770a562185" id="r_a163f35794896a34ac7ba6e770a562185"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a163f35794896a34ac7ba6e770a562185">activar_valvula_comida</a> ()</td></tr>
+<tr class="separator:a163f35794896a34ac7ba6e770a562185"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29c262a00eb9a76b84dc00431b9c2d86" id="r_a29c262a00eb9a76b84dc00431b9c2d86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29c262a00eb9a76b84dc00431b9c2d86">desactivar_valvula_comida</a> ()</td></tr>
+<tr class="memdesc:a29c262a00eb9a76b84dc00431b9c2d86"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a29c262a00eb9a76b84dc00431b9c2d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b8edbb8af48c104277d7b6fc5e6e0bd" id="r_a5b8edbb8af48c104277d7b6fc5e6e0bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b8edbb8af48c104277d7b6fc5e6e0bd">notificacion_sistema_prendido</a> ()</td></tr>
+<tr class="memdesc:a5b8edbb8af48c104277d7b6fc5e6e0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a5b8edbb8af48c104277d7b6fc5e6e0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a0739e0b72e2d60c6c0316ef657068f" id="r_a8a0739e0b72e2d60c6c0316ef657068f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a0739e0b72e2d60c6c0316ef657068f">informar_estado_recipiente</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:a8a0739e0b72e2d60c6c0316ef657068f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><br  />
+  <br /></td></tr>
+<tr class="separator:a8a0739e0b72e2d60c6c0316ef657068f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
 <tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a99e1066b38ddfbe3ea6b90cc9c51946c" id="r_a99e1066b38ddfbe3ea6b90cc9c51946c"><td class="memItemLeft" align="right" valign="top">uint16_t cantidad_agua uint16_t cantidad_alimento TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99e1066b38ddfbe3ea6b90cc9c51946c">task_handle_TAREA1</a></td></tr>
+<tr class="separator:a99e1066b38ddfbe3ea6b90cc9c51946c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="a5bb3d94c1a81090aa4c5e52bd55f6080" name="a5bb3d94c1a81090aa4c5e52bd55f6080"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bb3d94c1a81090aa4c5e52bd55f6080">&#9670;&#160;</a></span>BALANZA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BALANZA&#160;&#160;&#160;<a class="el" href="group___analog___i_o.html#gga4ebdf50515e5d73c58c24fd1491770dca703cf81b7a9530ba8650e0ee2f29d68e">CH1</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00047">47</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a> y <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>.</p>
+
+</div>
+</div>
+<a id="ac335c9f3283058b555758d9cac076b92" name="ac335c9f3283058b555758d9cac076b92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac335c9f3283058b555758d9cac076b92">&#9670;&#160;</a></span>BUAD_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUAD_RATE&#160;&#160;&#160;96000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00057">57</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="aa6100ab64bbb6a6758584d6fc7ebe6eb" name="aa6100ab64bbb6a6758584d6fc7ebe6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6100ab64bbb6a6758584d6fc7ebe6eb">&#9670;&#160;</a></span>distancia_recipiente_deseada</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define distancia_recipiente_deseada&#160;&#160;&#160;33</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00052">52</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00156">suministrar_agua()</a>.</p>
+
+</div>
+</div>
+<a id="adefb9a74a8127d1d5ea9599d96f8eaa0" name="adefb9a74a8127d1d5ea9599d96f8eaa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adefb9a74a8127d1d5ea9599d96f8eaa0">&#9670;&#160;</a></span>distancia_recipiente_lleno</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define distancia_recipiente_lleno&#160;&#160;&#160;31.5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00051">51</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00156">suministrar_agua()</a>.</p>
+
+</div>
+</div>
+<a id="a495b9899898bdd40e4dfe1dcd9212d69" name="a495b9899898bdd40e4dfe1dcd9212d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a495b9899898bdd40e4dfe1dcd9212d69">&#9670;&#160;</a></span>recipiente_lleno</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define recipiente_lleno&#160;&#160;&#160;500</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00054">54</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>.</p>
+
+</div>
+</div>
+<a id="a97dd27967880d1092e8c1bc72bb1928a" name="a97dd27967880d1092e8c1bc72bb1928a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97dd27967880d1092e8c1bc72bb1928a">&#9670;&#160;</a></span>recipiente_vacio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define recipiente_vacio&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00055">55</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>.</p>
+
+</div>
+</div>
+<a id="a5f82616fab767a9bb232ea8b891bdc0d" name="a5f82616fab767a9bb232ea8b891bdc0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f82616fab767a9bb232ea8b891bdc0d">&#9670;&#160;</a></span>TIME_PERIOD_AGUA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TIME_PERIOD_AGUA&#160;&#160;&#160;5000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00043">43</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="af1a8613a515ff89e50755ba998a37037" name="af1a8613a515ff89e50755ba998a37037"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a8613a515ff89e50755ba998a37037">&#9670;&#160;</a></span>TIME_PERIOD_INFORMAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TIME_PERIOD_INFORMAR&#160;&#160;&#160;5000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00045">45</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a23c5133404183ab81b869ea7999ed554" name="a23c5133404183ab81b869ea7999ed554"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c5133404183ab81b869ea7999ed554">&#9670;&#160;</a></span>TIME_PERIOD_PESO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TIME_PERIOD_PESO&#160;&#160;&#160;5000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00044">44</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a686bbea8aa48783bff60cf1ea1c572ca" name="a686bbea8aa48783bff60cf1ea1c572ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a686bbea8aa48783bff60cf1ea1c572ca">&#9670;&#160;</a></span>VALVULA_AGUA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VALVULA_AGUA&#160;&#160;&#160;<a class="el" href="group___g_i_o_p.html#ggaf65604147d0244c9b13cfdc865ad5393a8bdaec9182fb8ab2106d5c67f3eabd2d">GPIO_9</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00048">48</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00188">activar_valvula_agua()</a>, <a class="el" href="x__template_8c_source.html#l00247">app_main()</a> y <a class="el" href="x__template_8c_source.html#l00196">desactivar_valvula_agua()</a>.</p>
+
+</div>
+</div>
+<a id="a3435ea0743e7608b84acaafb98d945ff" name="a3435ea0743e7608b84acaafb98d945ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3435ea0743e7608b84acaafb98d945ff">&#9670;&#160;</a></span>VALVULA_COMIDA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VALVULA_COMIDA&#160;&#160;&#160;<a class="el" href="group___g_i_o_p.html#ggaf65604147d0244c9b13cfdc865ad5393a3943e6071dec78b6bcf9586cf0de6dd3">GPIO_10</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00049">49</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00204">activar_valvula_comida()</a>, <a class="el" href="x__template_8c_source.html#l00247">app_main()</a> y <a class="el" href="x__template_8c_source.html#l00212">desactivar_valvula_comida()</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Documentación de funciones</h2>
+<a id="a48a368e797183be1c299abd49a0de17e" name="a48a368e797183be1c299abd49a0de17e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a368e797183be1c299abd49a0de17e">&#9670;&#160;</a></span>activar_valvula_agua()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void activar_valvula_agua </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00188">188</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a> y <a class="el" href="x__template_8c_source.html#l00048">VALVULA_AGUA</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00156">suministrar_agua()</a>.</p>
+
+</div>
+</div>
+<a id="a163f35794896a34ac7ba6e770a562185" name="a163f35794896a34ac7ba6e770a562185"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a163f35794896a34ac7ba6e770a562185">&#9670;&#160;</a></span>activar_valvula_comida()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void activar_valvula_comida </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00204">204</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a> y <a class="el" href="x__template_8c_source.html#l00049">VALVULA_COMIDA</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>.</p>
+
+</div>
+</div>
 <a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
 
@@ -135,7 +462,288 @@ Funciones</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00036">36</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00247">247</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="analog__io__mcu_8h_source.html#l00038">ADC_SINGLE</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00045">AnalogInputInit()</a>, <a class="el" href="x__template_8c_source.html#l00047">BALANZA</a>, <a class="el" href="x__template_8c_source.html#l00057">BUAD_RATE</a>, <a class="el" href="gpio__mcu_8h_source.html#l00072">GPIO_20</a>, <a class="el" href="gpio__mcu_8h_source.html#l00073">GPIO_21</a>, <a class="el" href="gpio__mcu_8h_source.html#l00044">GPIO_OUTPUT</a>, <a class="el" href="gpio__mcu_8c_source.html#l00067">GPIOInit()</a>, <a class="el" href="hc__sr04_8c_source.html#l00034">HcSr04Init()</a>, <a class="el" href="x__template_8c_source.html#l00231">informar_estado_recipiente()</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00049">analog_input_config_t::input</a>, <a class="el" href="led_8c_source.html#l00031">LedsInit()</a>, <a class="el" href="x__template_8c_source.html#l00090">Notify_TAREA1()</a>, <a class="el" href="x__template_8c_source.html#l00098">Notify_TAREA2()</a>, <a class="el" href="x__template_8c_source.html#l00107">Notify_TAREA3()</a>, <a class="el" href="ili9341_8c_source.html#l00019">NULL</a>, <a class="el" href="uart__mcu_8h_source.html#l00039">serial_config_t::port</a>, <a class="el" href="x__template_8c_source.html#l00156">suministrar_agua()</a>, <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>, <a class="el" href="switch_8h_source.html#l00032">SWITCH_1</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00029">SwitchesInit()</a>, <a class="el" href="x__template_8c_source.html#l00065">task_handle_TAREA1</a>, <a class="el" href="x__template_8c_source.html#l00043">TIME_PERIOD_AGUA</a>, <a class="el" href="x__template_8c_source.html#l00045">TIME_PERIOD_INFORMAR</a>, <a class="el" href="x__template_8c_source.html#l00044">TIME_PERIOD_PESO</a>, <a class="el" href="timer__mcu_8h_source.html#l00040">timer_config_t::timer</a>, <a class="el" href="timer__mcu_8h_source.html#l00032">TIMER_A</a>, <a class="el" href="timer__mcu_8h_source.html#l00033">TIMER_B</a>, <a class="el" href="timer__mcu_8c_source.html#l00067">TimerInit()</a>, <a class="el" href="timer__mcu_8c_source.html#l00116">TimerStart()</a>, <a class="el" href="uart__mcu_8h_source.html#l00032">UART_PC</a>, <a class="el" href="uart__mcu_8c_source.html#l00107">UartInit()</a>, <a class="el" href="x__template_8c_source.html#l00048">VALVULA_AGUA</a> y <a class="el" href="x__template_8c_source.html#l00049">VALVULA_COMIDA</a>.</p>
+
+</div>
+</div>
+<a id="a986238c043b62ba75c89473d83009dea" name="a986238c043b62ba75c89473d83009dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a986238c043b62ba75c89473d83009dea">&#9670;&#160;</a></span>convertir_voltaje_peso()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t convertir_voltaje_peso </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>voltaje</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00112">112</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>.</p>
+
+</div>
+</div>
+<a id="a354f9f0bed90634aa3930f0085e03212" name="a354f9f0bed90634aa3930f0085e03212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a354f9f0bed90634aa3930f0085e03212">&#9670;&#160;</a></span>desactivar_valvula_agua()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void desactivar_valvula_agua </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00196">196</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a> y <a class="el" href="x__template_8c_source.html#l00048">VALVULA_AGUA</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00156">suministrar_agua()</a>.</p>
+
+</div>
+</div>
+<a id="a29c262a00eb9a76b84dc00431b9c2d86" name="a29c262a00eb9a76b84dc00431b9c2d86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c262a00eb9a76b84dc00431b9c2d86">&#9670;&#160;</a></span>desactivar_valvula_comida()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void desactivar_valvula_comida </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00212">212</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a> y <a class="el" href="x__template_8c_source.html#l00049">VALVULA_COMIDA</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00121">suministrar_comida()</a>.</p>
+
+</div>
+</div>
+<a id="a8a0739e0b72e2d60c6c0316ef657068f" name="a8a0739e0b72e2d60c6c0316ef657068f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a0739e0b72e2d60c6c0316ef657068f">&#9670;&#160;</a></span>informar_estado_recipiente()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void informar_estado_recipiente </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00231">231</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="uart__mcu_8h_source.html#l00032">UART_PC</a>, <a class="el" href="uart__mcu_8c_source.html#l00222">UartItoa()</a> y <a class="el" href="uart__mcu_8c_source.html#l00193">UartSendString()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a5b8edbb8af48c104277d7b6fc5e6e0bd" name="a5b8edbb8af48c104277d7b6fc5e6e0bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b8edbb8af48c104277d7b6fc5e6e0bd">&#9670;&#160;</a></span>notificacion_sistema_prendido()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void notificacion_sistema_prendido </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00220">220</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="led_8h_source.html#l00034">LED_1</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a> y <a class="el" href="led_8c_source.html#l00046">LedOn()</a>.</p>
+
+</div>
+</div>
+<a id="abcb960fa8ecef9efb6dcf26fa8457410" name="abcb960fa8ecef9efb6dcf26fa8457410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcb960fa8ecef9efb6dcf26fa8457410">&#9670;&#160;</a></span>Notify_TAREA1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Notify_TAREA1 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00090">90</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="x__template_8c_source.html#l00065">task_handle_TAREA1</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="adf98844238f4ccfe5b6ef3a88304ad6a" name="adf98844238f4ccfe5b6ef3a88304ad6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf98844238f4ccfe5b6ef3a88304ad6a">&#9670;&#160;</a></span>Notify_TAREA2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Notify_TAREA2 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00098">98</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ab9de0f5933bdb5afd0642f4aefc49e95" name="ab9de0f5933bdb5afd0642f4aefc49e95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9de0f5933bdb5afd0642f4aefc49e95">&#9670;&#160;</a></span>Notify_TAREA3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Notify_TAREA3 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00107">107</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a564a42cc25396a918a94b88cae26d813" name="a564a42cc25396a918a94b88cae26d813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a564a42cc25396a918a94b88cae26d813">&#9670;&#160;</a></span>suministrar_agua()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void suministrar_agua </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*param</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00156">156</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="x__template_8c_source.html#l00188">activar_valvula_agua()</a>, <a class="el" href="x__template_8c_source.html#l00196">desactivar_valvula_agua()</a>, <a class="el" href="x__template_8c_source.html#l00052">distancia_recipiente_deseada</a>, <a class="el" href="x__template_8c_source.html#l00051">distancia_recipiente_lleno</a> y <a class="el" href="hc__sr04_8c_source.html#l00045">HcSr04ReadDistanceInCentimeters()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a56ea3a521ffb4b9ed3d46b5adb0d7029" name="a56ea3a521ffb4b9ed3d46b5adb0d7029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56ea3a521ffb4b9ed3d46b5adb0d7029">&#9670;&#160;</a></span>suministrar_comida()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void suministrar_comida </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><br  />
+ </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*param</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00121">121</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="x__template_8c_source.html#l00204">activar_valvula_comida()</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00130">AnalogInputReadSingle()</a>, <a class="el" href="x__template_8c_source.html#l00047">BALANZA</a>, <a class="el" href="x__template_8c_source.html#l00112">convertir_voltaje_peso()</a>, <a class="el" href="x__template_8c_source.html#l00212">desactivar_valvula_comida()</a>, <a class="el" href="x__template_8c_source.html#l00054">recipiente_lleno</a> y <a class="el" href="x__template_8c_source.html#l00055">recipiente_vacio</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="a99e1066b38ddfbe3ea6b90cc9c51946c" name="a99e1066b38ddfbe3ea6b90cc9c51946c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e1066b38ddfbe3ea6b90cc9c51946c">&#9670;&#160;</a></span>task_handle_TAREA1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t cantidad_agua uint16_t cantidad_alimento TaskHandle_t task_handle_TAREA1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">= <a class="code hl_define" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div>
+<div class="line"> </div>
+<div class="line">TaskHandle_t task_handle_TAREA2 = <a class="code hl_define" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div>
+<div class="line"> </div>
+<div class="line">TaskHandle_t task_handle_TAREA3 = <a class="code hl_define" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">bool</span>  iniciar_sistema = <span class="keyword">false</span></div>
+<div class="ttc" id="aili9341_8c_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="ili9341_8c_source.html#l00019">ili9341.c:19</a></div></div>
+</div><!-- fragment -->
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00065">65</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00247">app_main()</a> y <a class="el" href="x__template_8c_source.html#l00090">Notify_TAREA1()</a>.</p>
 
 </div>
 </div>

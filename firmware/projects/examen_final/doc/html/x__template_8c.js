@@ -1,4 +1,28 @@
 var x__template_8c =
 [
-    [ "app_main", "x__template_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70", null ]
+    [ "BALANZA", "x__template_8c.html#a5bb3d94c1a81090aa4c5e52bd55f6080", null ],
+    [ "BUAD_RATE", "x__template_8c.html#ac335c9f3283058b555758d9cac076b92", null ],
+    [ "distancia_recipiente_deseada", "x__template_8c.html#aa6100ab64bbb6a6758584d6fc7ebe6eb", null ],
+    [ "distancia_recipiente_lleno", "x__template_8c.html#adefb9a74a8127d1d5ea9599d96f8eaa0", null ],
+    [ "recipiente_lleno", "x__template_8c.html#a495b9899898bdd40e4dfe1dcd9212d69", null ],
+    [ "recipiente_vacio", "x__template_8c.html#a97dd27967880d1092e8c1bc72bb1928a", null ],
+    [ "TIME_PERIOD_AGUA", "x__template_8c.html#a5f82616fab767a9bb232ea8b891bdc0d", null ],
+    [ "TIME_PERIOD_INFORMAR", "x__template_8c.html#af1a8613a515ff89e50755ba998a37037", null ],
+    [ "TIME_PERIOD_PESO", "x__template_8c.html#a23c5133404183ab81b869ea7999ed554", null ],
+    [ "VALVULA_AGUA", "x__template_8c.html#a686bbea8aa48783bff60cf1ea1c572ca", null ],
+    [ "VALVULA_COMIDA", "x__template_8c.html#a3435ea0743e7608b84acaafb98d945ff", null ],
+    [ "activar_valvula_agua", "x__template_8c.html#a48a368e797183be1c299abd49a0de17e", null ],
+    [ "activar_valvula_comida", "x__template_8c.html#a163f35794896a34ac7ba6e770a562185", null ],
+    [ "app_main", "x__template_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70", null ],
+    [ "convertir_voltaje_peso", "x__template_8c.html#a986238c043b62ba75c89473d83009dea", null ],
+    [ "desactivar_valvula_agua", "x__template_8c.html#a354f9f0bed90634aa3930f0085e03212", null ],
+    [ "desactivar_valvula_comida", "x__template_8c.html#a29c262a00eb9a76b84dc00431b9c2d86", null ],
+    [ "informar_estado_recipiente", "x__template_8c.html#a8a0739e0b72e2d60c6c0316ef657068f", null ],
+    [ "notificacion_sistema_prendido", "x__template_8c.html#a5b8edbb8af48c104277d7b6fc5e6e0bd", null ],
+    [ "Notify_TAREA1", "x__template_8c.html#abcb960fa8ecef9efb6dcf26fa8457410", null ],
+    [ "Notify_TAREA2", "x__template_8c.html#adf98844238f4ccfe5b6ef3a88304ad6a", null ],
+    [ "Notify_TAREA3", "x__template_8c.html#ab9de0f5933bdb5afd0642f4aefc49e95", null ],
+    [ "suministrar_agua", "x__template_8c.html#a564a42cc25396a918a94b88cae26d813", null ],
+    [ "suministrar_comida", "x__template_8c.html#a56ea3a521ffb4b9ed3d46b5adb0d7029", null ],
+    [ "task_handle_TAREA1", "x__template_8c.html#a99e1066b38ddfbe3ea6b90cc9c51946c", null ]
 ];

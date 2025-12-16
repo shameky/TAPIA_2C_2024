@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "examen_final", "index.html", [
-    [ "Template", "index.html", "index" ],
+    [ "EXAMEN FINAL", "index.html", "index" ],
     [ "Template", "md__c_1_2_repositorio_2_t_a_p_i_a__2_c__2024_2firmware_2projects_2examen__final_2_r_e_a_d_m_e.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Estructuras de datos", "annotated.html", [

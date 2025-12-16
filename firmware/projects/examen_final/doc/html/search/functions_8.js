@@ -32,5 +32,6 @@ var searchData=
   ['ili9341getstringsize_29',['ILI9341GetStringSize',['../group___i_l_i9341.html#ga5044d1ea4ba5b9b9244bc13898a514d2',1,'ILI9341GetStringSize(char *str, Font_t *font, uint16_t *width, uint16_t *height):&#160;ili9341.c'],['../group___i_l_i9341.html#ga5044d1ea4ba5b9b9244bc13898a514d2',1,'ILI9341GetStringSize(char *str, Font_t *font, uint16_t *width, uint16_t *height):&#160;ili9341.c']]],
   ['ili9341init_30',['ILI9341Init',['../group___i_l_i9341.html#ga5f72d1febbb1e77c2b50876ba8caf40c',1,'ILI9341Init(spi_dev_t spi_dev, uint8_t gpio_dc, uint8_t gpio_rst):&#160;ili9341.c'],['../group___i_l_i9341.html#ga5f72d1febbb1e77c2b50876ba8caf40c',1,'ILI9341Init(spi_dev_t spi_dev, uint8_t gpio_dc, uint8_t gpio_rst):&#160;ili9341.c']]],
   ['ili9341rotate_31',['ILI9341Rotate',['../group___i_l_i9341.html#ga7b187b4cb92aa6b28a51fbfd5153aa2b',1,'ILI9341Rotate(ili9341_orientation_t orientation):&#160;ili9341.c'],['../group___i_l_i9341.html#ga7b187b4cb92aa6b28a51fbfd5153aa2b',1,'ILI9341Rotate(ili9341_orientation_t orientation):&#160;ili9341.c']]],
-  ['isdigit_32',['isDigit',['../buzzer_8c.html#a7a929bf65cbc777bab7e533a2755cfad',1,'buzzer.c']]]
+  ['informar_5festado_5frecipiente_32',['informar_estado_recipiente',['../x__template_8c.html#a8a0739e0b72e2d60c6c0316ef657068f',1,'x_template.c']]],
+  ['isdigit_33',['isDigit',['../buzzer_8c.html#a7a929bf65cbc777bab7e533a2755cfad',1,'buzzer.c']]]
 ];
